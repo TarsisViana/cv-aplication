@@ -2,8 +2,8 @@ import { useState } from "react"
 import NewInput from "../NewInput"
 
 export default function EditForm({
-  inicialSchool,
-  inicialDegree,
+  inicialCompany,
+  inicialPosition,
   inicialStartYear,
   inicialEndYear,
   id,
@@ -11,8 +11,8 @@ export default function EditForm({
   closeForm
 }) {
 
-  const [school, setSchool] = useState(inicialSchool)
-  const [degree, setDegree] = useState(inicialDegree)
+  const [company, setCompany] = useState(inicialCompany)
+  const [position, setPosition] = useState(inicialPosition)
   const [startYear, setStartYear] = useState(inicialStartYear)
   const [endYear, setEndYear] = useState(inicialEndYear)
 
@@ -31,18 +31,18 @@ export default function EditForm({
   return (
     <form onSubmit={(e) => handleSubmit(e)}>
       <NewInput
-        label="School Name"
+        label="Company Name"
         type="text"
-        onChange={setSchool}
-        value={school}
-        name="school"
+        onChange={setCompany}
+        value={company}
+        name="company"
       />
       <NewInput
-        label="Degree"
+        label="Position"
         type="text"
-        onChange={setDegree}
-        value={degree}
-        name="degree"
+        onChange={setPosition}
+        value={position}
+        name="position"
       />
       <fieldset>
         <NewInput

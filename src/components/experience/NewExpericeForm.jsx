@@ -1,20 +1,11 @@
 import { useState } from "react"
 import NewInput from "../NewInput"
 
-export default function EditForm({
-  inicialSchool,
-  inicialDegree,
-  inicialStartYear,
-  inicialEndYear,
-  id,
-  onSave,
-  closeForm
-}) {
-
-  const [school, setSchool] = useState(inicialSchool)
-  const [degree, setDegree] = useState(inicialDegree)
-  const [startYear, setStartYear] = useState(inicialStartYear)
-  const [endYear, setEndYear] = useState(inicialEndYear)
+export default function NewExperienceForm({ onAddEd }) {
+  const [company, setCompany] = useState('')
+  const [position, setPosition] = useState('')
+  const [startYear, setStartYear] = useState('')
+  const [endYear, setEndYear] = useState('')
 
 
   function handleSubmit(e) {
@@ -22,27 +13,31 @@ export default function EditForm({
 
     const formData = new FormData(e.target)
     const payload = Object.fromEntries(formData)
+    console.log(payload)
 
-    onSave(payload, id)
-    closeForm()
+    onAddEd(payload)
 
+    //reset form
+    setCompany('')
+    setStartYear('')
+    setEndYear('')
+    setPosition('')
   }
-
   return (
     <form onSubmit={(e) => handleSubmit(e)}>
       <NewInput
-        label="School Name"
+        label="Company Name"
         type="text"
-        onChange={setSchool}
-        value={school}
-        name="school"
+        onChange={setCompany}
+        value={company}
+        name="company"
       />
       <NewInput
-        label="Degree"
+        label="Position"
         type="text"
-        onChange={setDegree}
-        value={degree}
-        name="degree"
+        onChange={setPosition}
+        value={position}
+        name="position"
       />
       <fieldset>
         <NewInput
@@ -62,7 +57,7 @@ export default function EditForm({
           placeholder="YYYY"
         />
       </fieldset>
-      <button type="submit">save</button>
+      <button type="submit">Add</button>
     </form>
   )
 }

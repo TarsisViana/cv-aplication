@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { v4 as uuidv4 } from 'uuid';
-import NewEducationList from "./EducationList";
 import NewEducationForm from "./NewEducationForm";
 import NewEducationListItem from "./NewEducationListItem";
 
@@ -25,7 +24,7 @@ export default function EducationSection() {
 
 
   return (
-    <div className="section">
+    <section className="education">
       <h2 className="educationTitle">Education</h2>
       <ul>
         {educationList.map(ed => {
@@ -38,7 +37,7 @@ export default function EducationSection() {
         })}
       </ul>
       <NewEducationForm onAddEd={onAddEd} />
-    </div>
+    </section>
   )
 }
 

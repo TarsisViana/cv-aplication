@@ -2,6 +2,7 @@ import { useState } from 'react'
 import './styles/App.css'
 import GeneralInfo from './components/generalSection/General.jsx'
 import EducationSection from './components/education/EducationSection.jsx'
+import ExperienceSection from './components/experience/ExperienceSection.jsx'
 
 function App() {
   const [education, setEducation] = useState([])
@@ -10,6 +11,7 @@ function App() {
       <div className="formSection">
         <GeneralInfo />
         <EducationSection />
+        <ExperienceSection />
       </div>
 
     </>

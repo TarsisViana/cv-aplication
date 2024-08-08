@@ -1,5 +1,5 @@
 import { useState } from "react"
-import NewInput from "./NewInput"
+import NewInput from "../NewInput"
 
 export default function NewEducationForm({ onAddEd }) {
   const [school, setSchool] = useState('')
