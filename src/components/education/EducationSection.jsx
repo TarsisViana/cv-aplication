@@ -6,21 +6,25 @@ import TitleWithButton from "../TitleWithButton";
 
 
 
-export default function EducationSection({ open, onOpen }) {
-  const [educationList, setEducationList] = useState([]);
+export default function EducationSection({
+  openIndex,
+  onOpen,
+  educationData,
+  onChange
+}) {
 
   function onAddEd(ed) {
     const newEd = { ...ed, id: uuidv4() }
-    setEducationList([...educationList, newEd])
+    onChange([...educationData, newEd])
   }
 
   function handleEdit(ed, id) {
-    const index = educationList.findIndex((value) => {
+    const index = educationData.findIndex((value) => {
       return value.id === id
     })
-    const copyList = [...educationList]
+    const copyList = [...educationData]
     copyList[index] = { ...ed, id };
-    setEducationList(copyList)
+    onChange(copyList)
   }
 
 
@@ -28,14 +32,14 @@ export default function EducationSection({ open, onOpen }) {
     <section className="education">
       <TitleWithButton
         title="Education"
-        id={2}
+        id={1}
         onClick={onOpen}
       />
       {
-        open !== 2 ? null
+        openIndex !== 1 ? null
           : <>
             <ul>
-              {educationList.map(ed => {
+              {educationData.map(ed => {
                 return (
                   <NewEducationListItem
                     {...ed}

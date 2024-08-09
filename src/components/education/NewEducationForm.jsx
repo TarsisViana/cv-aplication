@@ -28,14 +28,14 @@ export default function NewEducationForm({ onAddEd }) {
       <NewInput
         label="School Name"
         type="text"
-        onChange={setSchool}
+        onChange={e => setSchool(e.target.value)}
         value={school}
         name="school"
       />
       <NewInput
         label="Degree"
         type="text"
-        onChange={setDegree}
+        onChange={e => setDegree(e.target.value)}
         value={degree}
         name="degree"
       />
@@ -43,7 +43,7 @@ export default function NewEducationForm({ onAddEd }) {
         <NewInput
           label="Start & End year"
           type="number"
-          onChange={setStartYear}
+          onChange={e => setStartYear(e.target.value)}
           value={startYear}
           name="startYear"
           placeholder="YYYY"
@@ -51,7 +51,7 @@ export default function NewEducationForm({ onAddEd }) {
         <NewInput
           label=""
           type="number"
-          onChange={setEndYear}
+          onChange={e => setEndYear(e.target.value)}
           value={endYear}
           name="endYear"
           placeholder="YYYY"

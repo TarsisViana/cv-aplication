@@ -14,7 +14,7 @@ export default function NewInput({
       <span>{label}</span>
       <input
         type={type}
-        onChange={e => onChange(e.target.value)}
+        onChange={e => onChange(e)}
         value={value}
         name={name}
         placeholder={placeholder}

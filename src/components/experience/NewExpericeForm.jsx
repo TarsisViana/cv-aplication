@@ -28,14 +28,14 @@ export default function NewExperienceForm({ onAddEd }) {
       <NewInput
         label="Company Name"
         type="text"
-        onChange={setCompany}
+        onChange={e => setCompany(e.target.value)}
         value={company}
         name="company"
       />
       <NewInput
         label="Position"
         type="text"
-        onChange={setPosition}
+        onChange={e => setPosition(e.target.value)}
         value={position}
         name="position"
       />
@@ -43,7 +43,7 @@ export default function NewExperienceForm({ onAddEd }) {
         <NewInput
           label="Start & End year"
           type="number"
-          onChange={setStartYear}
+          onChange={e => setStartYear(e.target.value)}
           value={startYear}
           name="startYear"
           placeholder="YYYY"
@@ -51,7 +51,7 @@ export default function NewExperienceForm({ onAddEd }) {
         <NewInput
           label=""
           type="number"
-          onChange={setEndYear}
+          onChange={e => setEndYear(e.target.value)}
           value={endYear}
           name="endYear"
           placeholder="YYYY"

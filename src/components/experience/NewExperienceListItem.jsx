@@ -21,7 +21,9 @@ export default function NewExperienceListItem({
       <li>
         <h3>{position} at {company}</h3>
         <span>{startYear}-{endYear}</span>
-        <button onClick={handleEditToggle}>open</button>
+        <button onClick={handleEditToggle}>
+          {edit ? "close" : "open"}
+        </button>
       </li>
       {
         !edit ? null

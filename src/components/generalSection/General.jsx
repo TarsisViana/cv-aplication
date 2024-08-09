@@ -2,57 +2,55 @@ import { useState } from "react";
 import NewInput from "../NewInput";
 import TitleWithButton from "../TitleWithButton";
 
-export default function GeneralInfo({ open, onOpen }) {
-  const [fullName, setFullName] = useState("John john")
-  const [email, setEmail] = useState("jj@gmail.com")
-  const [telNumber, setTelNumber] = useState("99999999")
+export default function GeneralInfo({
+  openIndex,
+  onOpen,
+  personalInfo,
+  onChange
+}) {
 
-  function handleSubmit(e) {
-    e.preventDefault();
-    const formData = {
-      fullName,
-      email,
-      telNumber
-    }
-
-    console.log(formData)
-
+  function handleChange(e) {
+    onChange({
+      ...personalInfo,
+      [e.target.name]: e.target.value
+    });
   }
 
   return (
     <>
       <TitleWithButton
-        title="Experience"
-        id={1}
+        title="Personal Info"
+        id={0}
         onClick={onOpen}
       />
       {
-        open !== 1 ? null
+        openIndex !== 0 ? null
           : <>
-            <form onSubmit={handleSubmit} className="generalInfo">
+            <form onSubmit={(e) => e.preventDefault()} className="generalInfo">
               <NewInput
                 label="Full Name"
                 name="fullName"
                 type="text"
-                value={fullName}
-                onChange={(e) => setFullName(e.target.value)}
+                value={personalInfo.fullName}
+                onChange={handleChange}
+                placeholder="John Johnson"
               />
               <NewInput
                 label="Email"
-                value={email}
+                value={personalInfo.email}
                 type="email"
                 name="email"
-                onChange={(e) => setEmail(e.target.value)}
+                onChange={handleChange}
+                placeholder="john@email.com"
               />
               <NewInput
                 label="Phone number"
-                value={telNumber}
+                value={personalInfo.phone}
                 name="phone"
                 type="number"
-                onChange={(e) => setTelNumber(e.target.value)}
+                onChange={handleChange}
+                placeholder="99999999"
               />
-
-              <button>submit</button>
             </form>
           </>
       }

@@ -6,21 +6,26 @@ import TitleWithButton from "../TitleWithButton";
 
 
 
-export default function ExperienceSection({ open, onOpen }) {
-  const [experienceList, setExperienceList] = useState([]);
+export default function ExperienceSection({
+  openIndex,
+  onOpen,
+  experienceData,
+  onChange
+}) {
 
-  function onAddEd(ed) {
-    const newEd = { ...ed, id: uuidv4() }
-    setExperienceList([...experienceList, newEd])
+
+  function onAddEd(ex) {
+    const newEx = { ...ex, id: uuidv4() }
+    onChange([...experienceData, newEx])
   }
 
-  function handleEdit(ed, id) {
-    const index = experienceList.findIndex((value) => {
+  function handleEdit(ex, id) {
+    const index = experienceData.findIndex((value) => {
       return value.id === id
     })
-    const copyList = [...experienceList]
-    copyList[index] = { ...ed, id };
-    setExperienceList(copyList)
+    const copyList = [...experienceData]
+    copyList[index] = { ...ex, id };
+    onChange(copyList)
   }
 
 
@@ -28,18 +33,18 @@ export default function ExperienceSection({ open, onOpen }) {
     <section className="experience">
       <TitleWithButton
         title="Experience"
-        id={3}
+        id={2}
         onClick={onOpen}
       />
       {
-        open !== 3 ? null
+        openIndex !== 2 ? null
           : <>
             <ul>
-              {experienceList.map(ed => {
+              {experienceData.map(ex => {
                 return (
                   <NewExperienceListItem
-                    {...ed}
-                    key={ed.id}
+                    {...ex}
+                    key={ex.id}
                     onEdit={handleEdit}
                   />)
               })}
