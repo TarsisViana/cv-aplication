@@ -2,10 +2,11 @@ import { useState } from "react";
 import { v4 as uuidv4 } from 'uuid';
 import NewEducationForm from "./NewEducationForm";
 import NewEducationListItem from "./NewEducationListItem";
+import TitleWithButton from "../TitleWithButton";
 
 
 
-export default function EducationSection() {
+export default function EducationSection({ open, onOpen }) {
   const [educationList, setEducationList] = useState([]);
 
   function onAddEd(ed) {
@@ -25,18 +26,27 @@ export default function EducationSection() {
 
   return (
     <section className="education">
-      <h2 className="educationTitle">Education</h2>
-      <ul>
-        {educationList.map(ed => {
-          return (
-            <NewEducationListItem
-              {...ed}
-              key={ed.id}
-              onEdit={handleEdit}
-            />)
-        })}
-      </ul>
-      <NewEducationForm onAddEd={onAddEd} />
+      <TitleWithButton
+        title="Education"
+        id={2}
+        onClick={onOpen}
+      />
+      {
+        open !== 2 ? null
+          : <>
+            <ul>
+              {educationList.map(ed => {
+                return (
+                  <NewEducationListItem
+                    {...ed}
+                    key={ed.id}
+                    onEdit={handleEdit}
+                  />)
+              })}
+            </ul>
+            <NewEducationForm onAddEd={onAddEd} />
+          </>
+      }
     </section>
   )
 }

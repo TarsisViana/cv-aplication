@@ -16,31 +16,25 @@ export default function NewExperienceListItem({
     edit ? setEdit(false) : setEdit(true)
   }
 
-  if (edit) {
-    return (
-      <>
-        <li>
-          <h3>{position} at {company}</h3>
-          <span>{startYear}-{endYear}</span>
-          <button onClick={handleEditToggle}>close</button>
-        </li>
-        <EditForm
-          inicialCompany={company}
-          inicialPosition={position}
-          inicialStartYear={startYear}
-          inicialEndYear={endYear}
-          id={id}
-          onSave={onEdit}
-          closeForm={handleEditToggle}
-        />
-      </>
-    )
-  }
   return (
-    <li>
-      <h3>{position} at {company}</h3>
-      <span>{startYear}-{endYear}</span>
-      <button onClick={handleEditToggle}>open</button>
-    </li>
+    <>
+      <li>
+        <h3>{position} at {company}</h3>
+        <span>{startYear}-{endYear}</span>
+        <button onClick={handleEditToggle}>open</button>
+      </li>
+      {
+        !edit ? null
+          : <EditForm
+            inicialCompany={company}
+            inicialPosition={position}
+            inicialStartYear={startYear}
+            inicialEndYear={endYear}
+            id={id}
+            onSave={onEdit}
+            closeForm={handleEditToggle}
+          />
+      }
+    </>
   )
 }

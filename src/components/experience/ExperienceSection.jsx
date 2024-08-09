@@ -2,10 +2,11 @@ import { useState } from "react";
 import { v4 as uuidv4 } from 'uuid';
 import NewExperienceForm from "./NewExpericeForm";
 import NewExperienceListItem from "./NewExperienceListItem";
+import TitleWithButton from "../TitleWithButton";
 
 
 
-export default function ExperienceSection() {
+export default function ExperienceSection({ open, onOpen }) {
   const [experienceList, setExperienceList] = useState([]);
 
   function onAddEd(ed) {
@@ -25,18 +26,27 @@ export default function ExperienceSection() {
 
   return (
     <section className="experience">
-      <h2 className="experienceTitle">Experience</h2>
-      <ul>
-        {experienceList.map(ed => {
-          return (
-            <NewExperienceListItem
-              {...ed}
-              key={ed.id}
-              onEdit={handleEdit}
-            />)
-        })}
-      </ul>
-      <NewExperienceForm onAddEd={onAddEd} />
+      <TitleWithButton
+        title="Experience"
+        id={3}
+        onClick={onOpen}
+      />
+      {
+        open !== 3 ? null
+          : <>
+            <ul>
+              {experienceList.map(ed => {
+                return (
+                  <NewExperienceListItem
+                    {...ed}
+                    key={ed.id}
+                    onEdit={handleEdit}
+                  />)
+              })}
+            </ul>
+            <NewExperienceForm onAddEd={onAddEd} />
+          </>
+      }
     </section>
   )
 }

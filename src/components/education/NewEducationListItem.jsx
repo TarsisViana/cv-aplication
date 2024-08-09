@@ -16,31 +16,27 @@ export default function NewEducationListItem({
     edit ? setEdit(false) : setEdit(true)
   }
 
-  if (edit) {
-    return (
-      <>
-        <li>
-          <h3>{degree} at {school}</h3>
-          <span>{startYear}-{endYear}</span>
-          <button onClick={handleEditToggle}>close</button>
-        </li>
-        <EditForm
-          inicialSchool={school}
-          inicialDegree={degree}
-          inicialStartYear={startYear}
-          inicialEndYear={endYear}
-          id={id}
-          onSave={onEdit}
-          closeForm={handleEditToggle}
-        />
-      </>
-    )
-  }
   return (
-    <li>
-      <h3>{degree} at {school}</h3>
-      <span>{startYear}-{endYear}</span>
-      <button onClick={handleEditToggle}>open</button>
-    </li>
+    <>
+      <li>
+        <h3>{degree} at {school}</h3>
+        <span>{startYear}-{endYear}</span>
+        <button onClick={handleEditToggle}>
+          {edit ? "close" : "open"}
+        </button>
+      </li>
+      {
+        !edit ? null
+          : <EditForm
+            inicialSchool={school}
+            inicialDegree={degree}
+            inicialStartYear={startYear}
+            inicialEndYear={endYear}
+            id={id}
+            onSave={onEdit}
+            closeForm={handleEditToggle}
+          />
+      }
+    </>
   )
 }
